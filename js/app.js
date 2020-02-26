@@ -16,6 +16,10 @@ Enemy.prototype.update = function(dt) {
 		else {
 			this.x = -90;
 		}
+		//if collision with player, player is reset
+		if ((((this.x - player.x) < 10) && ((this.x - player.x) > -10)) && (((this.y - player.y) < 20) && ((this.y - player.y) > -20 ))) {
+			player.reset();
+		}
 };
 
 // Draw the enemy on the screen
@@ -35,6 +39,11 @@ Player.prototype.update = function(dt) {
 
 }
 
+Player.prototype.reset = function() {
+	this.x = 200;
+	this.y = 390;
+}
+
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
@@ -42,17 +51,30 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(e) {
 	switch(e) {
 		case 'left':
-			this.x -= 100;
+			if (this.x > 50) {
+				this.x -= 100;
+			}
 			break;
 		case 'up':
-			this.y -= 85;
+			if (this.y > 10) {
+				this.y -= 85;
+			}
 			break;
 		case 'right':
-			this.x += 100;
+			if (this.x < 400) {
+				this.x += 100;
+			}
 			break;
 		case 'down':
-			this.y += 85;
+			if (this.y < 350) {
+				this.y += 85;
+			}
 			break;
+	}
+	console.log(player.y);
+	if (this.y < -30) {
+		console.log("here!");
+		setTimeout(player.reset(), 2000);
 	}
 }
 
