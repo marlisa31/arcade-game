@@ -18,7 +18,9 @@ Enemy.prototype.update = function(dt) {
 
 		// set enemy back to starting point
 		else {
-			this.x = 0;
+			const minX = -3;
+			const maxX = -0.5;
+			this.x = Math.random() * (maxX - minX + 1) + minX;
 		}
 
 		// if collision of an enemy with player occurs, player is reset
@@ -40,13 +42,21 @@ var Player = function() {
 			this.y = 4;
 };
 
-Player.prototype.update = function(dt) {
-
-}
-
 Player.prototype.reset = function() {
 	this.x = 2;
 	this.y = 4;
+}
+
+Player.prototype.update = function() {
+
+ // Levels can go in here
+ if (this.y < 1) {
+		this.reset();
+	}
+}
+
+Player.prototype.newGame = function() {
+
 }
 
 Player.prototype.render = function() {
@@ -76,10 +86,9 @@ Player.prototype.handleInput = function(e) {
 			}
 			break;
 	}
-	console.log(player.y);
+
 	if (this.y < 1) {
-		console.log("here!");
-		//setTimeout(player.reset(), 2000);
+			Player.prototype.reset();
 	}
 }
 
@@ -88,8 +97,9 @@ Player.prototype.handleInput = function(e) {
 const enemyOne = new Enemy(-1, 0.75);
 const enemyTwo = new Enemy(-3, 1.85);
 const enemyThree = new Enemy(-2, 2.9);
+const enemyFour = new Enemy(-15, 2.9);
 
-const allEnemies = [enemyOne, enemyTwo, enemyThree];
+const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
 const player = new Player();
 
