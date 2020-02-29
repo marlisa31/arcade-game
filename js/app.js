@@ -7,32 +7,37 @@ var Enemy = function(xPos, yPos) {
 // Update the enemy's position
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-		if (this.x < 500) {
-			const minSpeed = 10;
-			const maxSpeed = 800;
-			const speed = Math.random() * (maxSpeed - minSpeed + 1) + minSpeed;
+		// move enemy
+		const minSpeed = .25;
+		const maxSpeed = 4;
+		const speed = Math.random() * (maxSpeed - minSpeed + 1) + minSpeed;
+
+		if (this.x < 5) {
 			this.x = this.x + speed *  dt;
 		}
+
+		// set enemy back to starting point
 		else {
-			this.x = -90;
+			this.x = 0;
 		}
-		//if collision with player, player is reset
-		if ((((this.x - player.x) < 10) && ((this.x - player.x) > -10)) && (((this.y - player.y) < 20) && ((this.y - player.y) > -20 ))) {
-			player.reset();
+
+		// if collision of an enemy with player occurs, player is reset
+		if ((this.x < (player.x + 0.5))  &&  ((this.x + 0.5) > player.x)  && (this.y < (player.y + 0.75)) && ((this.y + 0.75) > player.y)) {
+				player.reset();
 		}
 };
 
 // Draw the enemy on the screen
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 78);
 };
 
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
 	    this.sprite = 'images/char-princess-girl.png';
-			this.x = 200;
-			this.y = 390;
+			this.x = 2;
+			this.y = 4;
 };
 
 Player.prototype.update = function(dt) {
@@ -40,49 +45,49 @@ Player.prototype.update = function(dt) {
 }
 
 Player.prototype.reset = function() {
-	this.x = 200;
-	this.y = 390;
+	this.x = 2;
+	this.y = 4;
 }
 
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 }
 
 Player.prototype.handleInput = function(e) {
 	switch(e) {
 		case 'left':
-			if (this.x > 50) {
-				this.x -= 100;
+			if (this.x > 0) {
+				this.x -= 1;
 			}
 			break;
 		case 'up':
-			if (this.y > 10) {
-				this.y -= 85;
+			if (this.y > 0) {
+				this.y -= 1;
 			}
 			break;
 		case 'right':
-			if (this.x < 400) {
-				this.x += 100;
+			if (this.x < 4) {
+				this.x += 1;
 			}
 			break;
 		case 'down':
-			if (this.y < 350) {
-				this.y += 85;
+			if (this.y < 5) {
+				this.y += 1;
 			}
 			break;
 	}
 	console.log(player.y);
-	if (this.y < -30) {
+	if (this.y < 1) {
 		console.log("here!");
-		setTimeout(player.reset(), 2000);
+		//setTimeout(player.reset(), 2000);
 	}
 }
 
 
 // instantiate objects
-const enemyOne = new Enemy(-90, 60);
-const enemyTwo = new Enemy(-90, 145);
-const enemyThree = new Enemy(-90, 230);
+const enemyOne = new Enemy(-1, 0.75);
+const enemyTwo = new Enemy(-3, 1.85);
+const enemyThree = new Enemy(-2, 2.9);
 
 const allEnemies = [enemyOne, enemyTwo, enemyThree];
 
