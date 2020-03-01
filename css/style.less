@@ -1,5 +1,9 @@
 // out: style.css, sourcemap: false, compress: true;
 
+/*_________________________
+general
+_________________________*/
+
 @green-dark: #142513;
 @green-middle: #4b985c;
 @green-light: #abe383;
@@ -9,11 +13,8 @@ body {
 		background-color: @green-dark;
 		font-family: 'Dosis', 'sans-serif';
 }
-.levels {
-	color: @green-middle;
-	font-size: 2.5rem;
-	margin-top: 40px;
-}
+
+// points & levels
 .levels, .points {
 	.flex-box;
 	.flex-box-justify(center);
@@ -26,6 +27,16 @@ body {
 	.flex-box;
 	.flex-box-justify(center);
 	.flex-box-align(center);
+}
+
+/*_________________________
+levels
+_________________________*/
+
+.levels {
+	color: @green-middle;
+	font-size: 2.5rem;
+	margin-top: 40px;
 }
 .level-number-wrap {
 	background-color: @green-middle;
@@ -52,6 +63,10 @@ body {
     background-color: @green-middle;
   }
 }
+
+/*_________________________
+points
+_________________________*/
 
 .point-number-wrap.active {
 		animation: whitechange 1s 1;
@@ -88,7 +103,6 @@ body {
 /*_________________________
 helpers
 _________________________*/
-
 
 .flex-box {
 	display: -webkit-box;

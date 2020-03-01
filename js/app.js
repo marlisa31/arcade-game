@@ -1,3 +1,7 @@
+/*_________________________
+enemy object
+_________________________*/
+
 var Enemy = function(xPos, yPos) {
     this.sprite = 'images/enemy-bug.png';
 		this.x = xPos;
@@ -6,13 +10,18 @@ var Enemy = function(xPos, yPos) {
 		this.maxSpeed = 4;
 };
 
+// Draw enemy on the screen
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 78);
+};
+
 // Update the enemy's position
-// Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+	
 		// move enemy
 		const speed = Math.random() * (this.maxSpeed - this.minSpeed + 1) + this.minSpeed;
 		if (this.x < 5) {
-			this.x = this.x + speed *  dt;
+			this.x = this.x + speed *  dt; // Parameter dt: a time delta between ticks
 		}
 
 		// set enemy back to starting point at end of canvas
@@ -22,20 +31,19 @@ Enemy.prototype.update = function(dt) {
 			this.x = Math.random() * (maxX - minX + 1) + minX;
 		}
 
-		// if collision of an enemy with player occurs, player is reset
+		// Reset player if collision of an enemy with player occurs
 		if ((this.x < (player.x + 0.5))  &&  ((this.x + 0.5) > player.x)  && (this.y < (player.y + 0.75)) && ((this.y + 0.75) > player.y)) {
 				player.reset();
 				player.pointsDecrease();
 		}
 };
 
-// Draw the enemy on the screen
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 78);
-};
 
-// This class requires an update(), render() and
-// a handleInput() method.
+
+/*_________________________
+player object
+_________________________*/
+
 var Player = function() {
 	    this.sprite = 'images/char-princess-girl.png';
 			this.x = 2;
@@ -44,9 +52,34 @@ var Player = function() {
 			this.points = 0;
 };
 
-Player.prototype.reset = function() {
-	this.x = 2;
-	this.y = 4;
+// draw player on the screen
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+}
+
+Player.prototype.handleInput = function(e) {
+	switch(e) {
+		case 'left':
+			if (this.x > 0) {
+				this.x -= 1;
+			}
+			break;
+		case 'up':
+			if (this.y > 0) {
+				this.y -= 1;
+			}
+			break;
+		case 'right':
+			if (this.x < 4) {
+				this.x += 1;
+			}
+			break;
+		case 'down':
+			if (this.y < 5) {
+				this.y += 1;
+			}
+			break;
+	}
 }
 
 Player.prototype.update = function() {
@@ -54,6 +87,11 @@ Player.prototype.update = function() {
 		this.reset();
 		this.pointsIncrease();
 	}
+}
+
+Player.prototype.reset = function() {
+	this.x = 2;
+	this.y = 4;
 }
 
 Player.prototype.pointsIncrease = function() {
@@ -116,37 +154,12 @@ Player.prototype.removeActive = function(element) {
 	element.parentNode.classList.remove('active');
 }
 
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
-}
 
-Player.prototype.handleInput = function(e) {
-	switch(e) {
-		case 'left':
-			if (this.x > 0) {
-				this.x -= 1;
-			}
-			break;
-		case 'up':
-			if (this.y > 0) {
-				this.y -= 1;
-			}
-			break;
-		case 'right':
-			if (this.x < 4) {
-				this.x += 1;
-			}
-			break;
-		case 'down':
-			if (this.y < 5) {
-				this.y += 1;
-			}
-			break;
-	}
-}
+/*_________________________
+instantiation of objects
+_________________________*/
 
-
-// instantiate objects
+// place enemies on the screen
 const enemyOne = new Enemy(-1, 0.75);
 const enemyTwo = new Enemy(-3, 1.85);
 const enemyThree = new Enemy(-2, 2.9);
@@ -164,6 +177,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
