@@ -7,7 +7,7 @@
 
 ## Run
 
-You can run the game by downloading and deploying it or by simply checking out the already existing github page to do so: [URL].
+You can run the game by downloading and deploying it or by simply checking out the already existing [GitHub page](#https://marlisa31.github.io/arcade-game/) to do so.
 
 
 ## Play
