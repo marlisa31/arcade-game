@@ -10,14 +10,14 @@ var Enemy = function(xPos, yPos) {
 		this.maxSpeed = 4;
 };
 
-// Draw enemy on the screen
+// draw enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 78);
 };
 
-// Update the enemy's position
+// update the enemy's position
 Enemy.prototype.update = function(dt) {
-	
+
 		// move enemy
 		const speed = Math.random() * (this.maxSpeed - this.minSpeed + 1) + this.minSpeed;
 		if (this.x < 5) {
@@ -31,7 +31,7 @@ Enemy.prototype.update = function(dt) {
 			this.x = Math.random() * (maxX - minX + 1) + minX;
 		}
 
-		// Reset player if collision of an enemy with player occurs
+		// reset player if collision of an enemy with player occurs
 		if ((this.x < (player.x + 0.5))  &&  ((this.x + 0.5) > player.x)  && (this.y < (player.y + 0.75)) && ((this.y + 0.75) > player.y)) {
 				player.reset();
 				player.pointsDecrease();
@@ -57,6 +57,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 }
 
+// handle key input of user
 Player.prototype.handleInput = function(e) {
 	switch(e) {
 		case 'left':
@@ -82,6 +83,7 @@ Player.prototype.handleInput = function(e) {
 	}
 }
 
+// reset player and increase points if player made it to water
 Player.prototype.update = function() {
  if (this.y < 1) {
 		this.reset();
@@ -89,11 +91,13 @@ Player.prototype.update = function() {
 	}
 }
 
+// reset method
 Player.prototype.reset = function() {
 	this.x = 2;
 	this.y = 4;
 }
 
+// increase points
 Player.prototype.pointsIncrease = function() {
 	this.points += 10;
 	const pointsNumber = document.querySelector('.points-number');
@@ -107,12 +111,12 @@ Player.prototype.pointsIncrease = function() {
 	}
 }
 
+// decrease points by 10 and start levelDecrease method every 20 points
 Player.prototype.pointsDecrease = function() {
 	if (this.points >= 10) {
 		this.points -= 10;
 		const pointsNumber = document.querySelector('.points-number');
 		pointsNumber.innerHTML = this.points;
-		console.log('here');
 	}
 	// decrease level after each 20 points
 	if (((this.points / 20) < this.level) && (this.level > 1)) {
@@ -120,6 +124,7 @@ Player.prototype.pointsDecrease = function() {
 	}
 }
 
+// increase level
 Player.prototype.levelIncrease = function() {
 	this.level++;
 	const lvlNumber = document.querySelector('.level-number');
@@ -134,6 +139,7 @@ Player.prototype.levelIncrease = function() {
 	setTimeout(this.removeActive, 1000, lvlNumber);
 }
 
+// decrease level
 Player.prototype.levelDecrease = function() {
 	this.level--;
 	const lvlNumber = document.querySelector('.level-number');
@@ -146,10 +152,10 @@ Player.prototype.levelDecrease = function() {
 	});
 }
 
+// add/ remove active class to draw the users attention to update of level/points
 Player.prototype.addActive = function(element) {
 	element.parentNode.classList.add('active');
 }
-
 Player.prototype.removeActive = function(element) {
 	element.parentNode.classList.remove('active');
 }
