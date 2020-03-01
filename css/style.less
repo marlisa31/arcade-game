@@ -52,6 +52,17 @@ _________________________*/
 	animation: greenchange 1s 1;
 }
 
+@-webkit-keyframes greenchange {
+	0% {
+		background-color: @green-middle;
+	}
+  50% {
+    background-color: @green-light;
+  }
+  100% {
+    background-color: @green-middle;
+  }
+}
 @keyframes greenchange {
 	0% {
 		background-color: @green-middle;
@@ -72,6 +83,17 @@ _________________________*/
 		animation: whitechange 1s 1;
 }
 
+@-webkit-keyframes whitechange {
+	0% {
+		background-color: white;
+	}
+  50% {
+    background-color: @green-light;
+  }
+  100% {
+    background-color: white;
+  }
+}
 @keyframes whitechange {
 	0% {
 		background-color: white;

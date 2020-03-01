@@ -60,6 +60,17 @@ _________________________*/
 .level-number-wrap.active {
   animation: greenchange 1s 1;
 }
+@-webkit-keyframes greenchange {
+  0% {
+    background-color: #4b985c;
+  }
+  50% {
+    background-color: #abe383;
+  }
+  100% {
+    background-color: #4b985c;
+  }
+}
 @keyframes greenchange {
   0% {
     background-color: #4b985c;
@@ -76,6 +87,17 @@ points
 _________________________*/
 .point-number-wrap.active {
   animation: whitechange 1s 1;
+}
+@-webkit-keyframes whitechange {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #abe383;
+  }
+  100% {
+    background-color: white;
+  }
 }
 @keyframes whitechange {
   0% {
