@@ -12,7 +12,7 @@ var Enemy = function(xPos, yPos) {
 
 // draw enemy on the screen
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 78);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
 };
 
 // update the enemy's position
@@ -167,9 +167,9 @@ _________________________*/
 
 // place enemies on the screen
 const enemyOne = new Enemy(-1, 0.75);
-const enemyTwo = new Enemy(-3, 1.85);
-const enemyThree = new Enemy(-2, 2.9);
-const enemyFour = new Enemy(-13, 2.9);
+const enemyTwo = new Enemy(-3, 1.75);
+const enemyThree = new Enemy(-2, 2.75);
+const enemyFour = new Enemy(-13, 2.75);
 
 const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 
