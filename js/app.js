@@ -2,21 +2,20 @@ var Enemy = function(xPos, yPos) {
     this.sprite = 'images/enemy-bug.png';
 		this.x = xPos;
 		this.y = yPos;
+		this.minSpeed = 0.25;
+		this.maxSpeed = 4;
 };
 
 // Update the enemy's position
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
 		// move enemy
-		const minSpeed = .25;
-		const maxSpeed = 4;
-		const speed = Math.random() * (maxSpeed - minSpeed + 1) + minSpeed;
-
+		const speed = Math.random() * (this.maxSpeed - this.minSpeed + 1) + this.minSpeed;
 		if (this.x < 5) {
 			this.x = this.x + speed *  dt;
 		}
 
-		// set enemy back to starting point
+		// set enemy back to starting point at end of canvas
 		else {
 			const minX = -3;
 			const maxX = -0.5;
@@ -26,6 +25,7 @@ Enemy.prototype.update = function(dt) {
 		// if collision of an enemy with player occurs, player is reset
 		if ((this.x < (player.x + 0.5))  &&  ((this.x + 0.5) > player.x)  && (this.y < (player.y + 0.75)) && ((this.y + 0.75) > player.y)) {
 				player.reset();
+				player.pointsDecrease();
 		}
 };
 
@@ -40,6 +40,8 @@ var Player = function() {
 	    this.sprite = 'images/char-princess-girl.png';
 			this.x = 2;
 			this.y = 4;
+			this.level = 1;
+			this.points = 0;
 };
 
 Player.prototype.reset = function() {
@@ -48,15 +50,70 @@ Player.prototype.reset = function() {
 }
 
 Player.prototype.update = function() {
-
- // Levels can go in here
  if (this.y < 1) {
 		this.reset();
+		this.pointsIncrease();
 	}
 }
 
-Player.prototype.newGame = function() {
+Player.prototype.pointsIncrease = function() {
+	this.points += 10;
+	const pointsNumber = document.querySelector('.points-number');
+	pointsNumber.innerHTML = this.points;
+	this.addActive(pointsNumber);
+	setTimeout(this.removeActive, 1000, pointsNumber);
 
+	// increase level after each 20 points
+	if ((this.points / 20) > this.level) {
+		this.levelIncrease();
+	}
+}
+
+Player.prototype.pointsDecrease = function() {
+	if (this.points >= 10) {
+		this.points -= 10;
+		const pointsNumber = document.querySelector('.points-number');
+		pointsNumber.innerHTML = this.points;
+		console.log('here');
+	}
+	// decrease level after each 20 points
+	if (((this.points / 20) < this.level) && (this.level > 1)) {
+			this.levelDecrease();
+	}
+}
+
+Player.prototype.levelIncrease = function() {
+	this.level++;
+	const lvlNumber = document.querySelector('.level-number');
+	lvlNumber.innerHTML = this.level;
+
+	// increase speed of all enemies
+	allEnemies.forEach(element => {
+		element.minSpeed+= 0.5;
+		element.maxSpeed+= 0.5;
+	});
+	this.addActive(lvlNumber);
+	setTimeout(this.removeActive, 1000, lvlNumber);
+}
+
+Player.prototype.levelDecrease = function() {
+	this.level--;
+	const lvlNumber = document.querySelector('.level-number');
+	lvlNumber.innerHTML = this.level;
+
+	// decrease speed of all enemies
+	allEnemies.forEach(element => {
+		element.minSpeed-= 0.5;
+		element.maxSpeed-= 0.5;
+	});
+}
+
+Player.prototype.addActive = function(element) {
+	element.parentNode.classList.add('active');
+}
+
+Player.prototype.removeActive = function(element) {
+	element.parentNode.classList.remove('active');
 }
 
 Player.prototype.render = function() {
@@ -86,10 +143,6 @@ Player.prototype.handleInput = function(e) {
 			}
 			break;
 	}
-
-	if (this.y < 1) {
-			Player.prototype.reset();
-	}
 }
 
 
@@ -97,7 +150,7 @@ Player.prototype.handleInput = function(e) {
 const enemyOne = new Enemy(-1, 0.75);
 const enemyTwo = new Enemy(-3, 1.85);
 const enemyThree = new Enemy(-2, 2.9);
-const enemyFour = new Enemy(-15, 2.9);
+const enemyFour = new Enemy(-13, 2.9);
 
 const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour];
 

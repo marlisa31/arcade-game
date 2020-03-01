@@ -1,3 +1,107 @@
 body {
-    text-align: center;
+  text-align: center;
+  background-color: #142513;
+  font-family: 'Dosis', 'sans-serif';
+}
+.levels {
+  color: #4b985c;
+  font-size: 2.5rem;
+  margin-top: 40px;
+}
+.levels,
+.points {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.level-number-wrap,
+.point-number-wrap {
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 0 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.level-number-wrap {
+  background-color: #4b985c;
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+}
+.level-number {
+  color: #142513;
+  font-size: 2rem;
+}
+.level-number-wrap.active {
+  animation: greenchange 1s 1;
+}
+@keyframes greenchange {
+  0% {
+    background-color: #4b985c;
+  }
+  50% {
+    background-color: #abe383;
+  }
+  100% {
+    background-color: #4b985c;
+  }
+}
+.point-number-wrap.active {
+  animation: whitechange 1s 1;
+}
+@keyframes whitechange {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #abe383;
+  }
+  100% {
+    background-color: white;
+  }
+}
+.points {
+  color: white;
+  font-size: 1.25rem;
+  margin-top: 15px;
+}
+.point-number-wrap {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+}
+.points-number {
+  color: #142513;
+  font-size: 0.9rem;
+}
+/*_________________________
+helpers
+_________________________*/
+.flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
