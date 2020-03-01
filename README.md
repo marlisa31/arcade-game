@@ -2,19 +2,14 @@
 
 ## Table of Contents
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+- [Run](#run)
+- [Play](#play)
 
-## Instructions
+## Run
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+You can run the game by downloading and deploying it or by simply checking out the already existing github page to do so: [URL].
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+## Play
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+The game is played by moving the princess (player) using the keyboard keys up, down, left and right. The goal of the game is cross the stones to get from the grass to the water without colliding with the moving enemies (bugs). Each time the princess succeeds in this, she gets 10 points. Every 20 points the level is increased which means that the speed of the enemies will get faster. Each time the princess collides with an enemy, 10 points will be subtracted from her score (and also the level will adjust accordingly if necessary). The game can be played endlessly until the speed is too fast.
