@@ -13,7 +13,7 @@ var Engine = (function(global) {
     doc.body.appendChild(canvas);
 
     function main() {
-			// delta information to ensure same speed on different computers
+        // delta information to ensure same speed on different computers
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
         update(dt);
@@ -22,7 +22,7 @@ var Engine = (function(global) {
         win.requestAnimationFrame(main);
     }
 
-		// initial set up
+    // initial set up
     function init() {
         lastTime = Date.now();
         main();
@@ -38,35 +38,35 @@ var Engine = (function(global) {
         player.update();
     }
 
-		// called every game tick
+    // called every game tick
     function render() {
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+            'images/water-block.png',   // Top row is water
+            'images/stone-block.png',   // Row 1 of 3 of stone
+            'images/stone-block.png',   // Row 2 of 3 of stone
+            'images/stone-block.png',   // Row 3 of 3 of stone
+            'images/grass-block.png',   // Row 1 of 2 of grass
+            'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
             row, col;
 
-        // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height);
+            // Before drawing, clear existing canvas
+            ctx.clearRect(0,0,canvas.width,canvas.height);
 
-        //Loop through the number of rows and columns using the rowImages array, draw the correct image for that portion of the "grid"
+            //Loop through the number of rows and columns using the rowImages array, draw the correct image for that portion of the "grid"
 
-        for (row = 0; row < numRows; row++) {
-            for (col = 0; col < numCols; col++) {
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+            for (row = 0; row < numRows; row++) {
+                for (col = 0; col < numCols; col++) {
+                    ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                }
             }
+            renderEntities();
         }
-        renderEntities();
-    }
 
-    function renderEntities() {
-        allEnemies.forEach(function(enemy) {
+        function renderEntities() {
+            allEnemies.forEach(function(enemy) {
             enemy.render();
         });
         player.render();
@@ -77,10 +77,10 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-				'images/char-princess-girl.png'
+        'images/char-princess-girl.png'
     ]);
     Resources.onReady(init);
 
-		// assign canvas' context object to global variable so it can be used easily
+    // assign canvas' context object to global variable so it can be used easily
     global.ctx = ctx;
 })(this);
