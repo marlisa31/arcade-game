@@ -10,23 +10,23 @@ _________________________*/
 
 body {
     text-align: center;
-		background-color: @green-dark;
-		font-family: 'Dosis', 'sans-serif';
+    background-color: @green-dark;
+    font-family: 'Dosis', 'sans-serif';
 }
 
 // points & levels
 .levels, .points {
-	.flex-box;
-	.flex-box-justify(center);
+    .flex-box;
+    .flex-box-justify(center);
 }
 .level-number-wrap, .point-number-wrap {
-	display: inline-block;
-	border-radius: 50%;
-	position: relative;
-	margin: 0 0 0 10px;
-	.flex-box;
-	.flex-box-justify(center);
-	.flex-box-align(center);
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    margin: 0 0 0 10px;
+    .flex-box;
+    .flex-box-justify(center);
+    .flex-box-align(center);
 }
 
 /*_________________________
@@ -34,45 +34,45 @@ levels
 _________________________*/
 
 .levels {
-	color: @green-middle;
-	font-size: 2.5rem;
-	margin-top: 40px;
+    color: @green-middle;
+    font-size: 2.5rem;
+    margin-top: 40px;
 }
 .level-number-wrap {
-	background-color: @green-middle;
-	width: 40px;
-	height: 40px;
-	margin-top: 5px;
+    background-color: @green-middle;
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
 }
 .level-number {
-	color: #142513;
-	font-size: 2rem;
+    color: #142513;
+    font-size: 2rem;
 }
 .level-number-wrap.active {
-	animation: greenchange 1s 1;
+    animation: greenchange 1s 1;
 }
 
 @-webkit-keyframes greenchange {
-	0% {
-		background-color: @green-middle;
-	}
-  50% {
-    background-color: @green-light;
-  }
-  100% {
-    background-color: @green-middle;
-  }
+    0% {
+        background-color: @green-middle;
+    }
+    50% {
+        background-color: @green-light;
+    }
+    100% {
+        background-color: @green-middle;
+    }
 }
 @keyframes greenchange {
-	0% {
-		background-color: @green-middle;
-	}
-  50% {
-    background-color: @green-light;
-  }
-  100% {
-    background-color: @green-middle;
-  }
+    0% {
+        background-color: @green-middle;
+    }
+    50% {
+        background-color: @green-light;
+    }
+    100% {
+        background-color: @green-middle;
+    }
 }
 
 /*_________________________
@@ -80,45 +80,45 @@ points
 _________________________*/
 
 .point-number-wrap.active {
-		animation: whitechange 1s 1;
+    animation: whitechange 1s 1;
 }
 
 @-webkit-keyframes whitechange {
-	0% {
-		background-color: white;
-	}
-  50% {
-    background-color: @green-light;
-  }
-  100% {
-    background-color: white;
-  }
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: @green-light;
+    }
+    100% {
+        background-color: white;
+    }
 }
 @keyframes whitechange {
-	0% {
-		background-color: white;
-	}
-  50% {
-    background-color: @green-light;
-  }
-  100% {
-    background-color: white;
-  }
+    0% {
+        background-color: white;
+    }
+    50% {
+        background-color: @green-light;
+    }
+    100% {
+        background-color: white;
+    }
 }
 
 .points {
-	color: white;
-	font-size: 1.25rem;
-	margin-top: 15px;
+    color: white;
+    font-size: 1.25rem;
+    margin-top: 15px;
 }
 .point-number-wrap {
-	width: 25px;
-	height: 25px;
-	background-color: white;
+    width: 25px;
+    height: 25px;
+    background-color: white;
 }
 .points-number {
-	color: #142513;
-	font-size: 0.9rem;
+    color: #142513;
+    font-size: 0.9rem;
 }
 
 
@@ -127,23 +127,23 @@ helpers
 _________________________*/
 
 .flex-box {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-  -ms-flex-flow: row wrap;
-  flex-flow: row wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
 }
 
 .flex-box-justify(@direction) {
-	-webkit-box-pack: @direction;
-  -ms-flex-pack: @direction;
-  justify-content: @direction;
+    -webkit-box-pack: @direction;
+    -ms-flex-pack: @direction;
+    justify-content: @direction;
 }
 
 .flex-box-align(@direction) {
-	-webkit-box-align: @direction;
-  -ms-flex-align: @direction;
-  align-items: @direction;
+    -webkit-box-align: @direction;
+    -ms-flex-align: @direction;
+    align-items: @direction;
 }
